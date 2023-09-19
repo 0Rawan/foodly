@@ -21,9 +21,7 @@ class AuthController extends GetxController implements GetxService {
       authRepo.saveUserToken(response.body["token"]);
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
-      String error = response.body['errors'][0]['message'] == null
-          ? "Something went wrong! Please make sure your credentials are correct and try again"
-          : response.body['errors'][0]['message'];
+      String error = response.body['errors'][0]['message'] ?? "Something went wrong! Please make sure your credentials are correct and try again";
       responseModel = ResponseModel(false, error);
     }
     _isLoading = false;

@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         selectedFontSize: 0.0,
         unselectedFontSize: 0.0,
         onTap: onTapNav,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,

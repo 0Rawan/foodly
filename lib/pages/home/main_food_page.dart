@@ -1,3 +1,4 @@
+import 'package:dofd_user_panel/controllers/categories_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:dofd_user_panel/utils/dimensions.dart';
 import 'package:dofd_user_panel/widgets/small_text.dart';
@@ -23,6 +24,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
   Future<void> _loadResources() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
+    await Get.find<CategoriesController>().getCategoriesList();
+
   }
 
   @override
@@ -73,7 +76,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
                 child: SingleChildScrollView(
               child: FoodPageBody(),
             ))

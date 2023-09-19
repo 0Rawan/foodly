@@ -35,7 +35,7 @@ class ProductModel {
   String? name;
   String? description;
   int? price;
-  int? stars;
+  int? rating;
   String? img;
   String? location;
   String? createdAt;
@@ -47,7 +47,7 @@ class ProductModel {
       this.name,
       this.description,
       this.price,
-      this.stars,
+      this.rating,
       this.img,
       this.location,
       this.createdAt,
@@ -59,7 +59,7 @@ class ProductModel {
     name = json['name'];
     description = json['description'];
     price = json['price'];
-    stars = json['stars'];
+    rating = json['rating'];
     img = json['img'];
     location = json['location'];
     createdAt = json['created_at'];
@@ -73,7 +73,7 @@ class ProductModel {
       'name': this.name,
       'description': this.description,
       'price': this.price,
-      'stars': this.stars,
+      'rating': this.rating,
       'img': this.img,
       'location': this.location,
       'created_at': this.createdAt,

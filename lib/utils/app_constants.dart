@@ -5,6 +5,7 @@ class AppConstants {
   static const String BASE_URL = "http://127.0.0.1:8000";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
+  static const String CATEGORIES_URI = "/api/v1/categories";
   static const String UPLOAD_URL = "/uploads/";
 
   // user and auth endpoints
@@ -33,4 +34,7 @@ class AppConstants {
   static const String PASSWORD = "";
   static const String CART_LIST = "cart-list";
   static const String CART_HISTORY_LIST = "cart-history-list";
+
+  /* images */
+  static const String DEFAULT_IMAGE = 'https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg';
 }

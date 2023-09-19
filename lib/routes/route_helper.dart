@@ -63,7 +63,7 @@ class RouteHelper {
     GetPage(
         name: initial,
         page: () {
-          return HomePage();
+          return const HomePage();
         },
         transition: Transition.fade),
     GetPage(

@@ -2,7 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dofd_user_panel/controllers/popular%20_product_controller.dart';
-import 'package:dofd_user_panel/controllers/recommended_food_controller.dart';
+import 'package:dofd_user_panel/controllers/categories_controller.dart';
 import 'package:dofd_user_panel/models/products_model.dart';
 import 'package:dofd_user_panel/pages/food/popular_food_detail.dart';
 import 'package:dofd_user_panel/routes/route_helper.dart';
@@ -14,6 +14,7 @@ import 'package:dofd_user_panel/widgets/big_text.dart';
 import 'package:dofd_user_panel/widgets/icon_and_text_widget.dart';
 import 'package:dofd_user_panel/widgets/small_text.dart';
 import 'package:get/get.dart';
+import '../../widgets/image_card.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -117,88 +118,24 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         // recommended food
 
         // list of food and images
-        GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
-          return recommendedProduct.isLoaded
-              ? ListView.builder(
+        GetBuilder<CategoriesController>(builder: (categories) {
+          return categories.isLoaded
+              ? GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                  ),
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: recommendedProduct.recommendedProductList.length,
+                  itemCount: categories.categoriesList.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Get.toNamed(
                             RouteHelper.getRecommendedFood(index, "home"));
                       },
-                      child: Container(
-                        margin: EdgeInsets.only(
-                            left: Dimensions.width20,
-                            right: Dimensions.width20,
-                            bottom: Dimensions.width10),
-                        child: Row(
-                          children: [
-                            // image
-                            Container(
-                              height: Dimensions.listViewImgSize,
-                              width: Dimensions.listViewImgSize,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.radius20),
-                                color: Colors.white38,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-
-                                  image: NetworkImage(AppConstants.BASE_URL +
-                                      AppConstants.UPLOAD_URL +
-                                      recommendedProduct
-                                          .recommendedProductList[index].img!),
-                                ),
-                              ),
-                            ),
-
-                            // text
-                            Expanded(
-                              child: Container(
-                                  height: Dimensions.listViewTextContSize,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight:
-                                          Radius.circular(Dimensions.radius20),
-                                      bottomRight:
-                                          Radius.circular(Dimensions.radius20),
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: Dimensions.width10,
-                                        right: Dimensions.width10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        BigText(
-                                          text: recommendedProduct
-                                              .recommendedProductList[index]
-                                              .name!,
-                                        ),
-                                        SizedBox(
-                                          height: Dimensions.height10,
-                                        ),
-                                        SmallText(
-                                            text:
-                                                "With Chinese charatceristics"),
-                                        SizedBox(
-                                          height: Dimensions.height10,
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            )
-                          ],
-                        ),
-                      ),
+                        child:
+                        ImageCard(text: categories.categoriesList[index].title,
+                            image: categories.categoriesList[index].img?? AppConstants.DEFAULT_IMAGE)
                     );
                   })
               : CircularProgressIndicator(
@@ -252,9 +189,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 color: index.isEven ? AppColors.yellowColor : Color(0xFF9294cc),
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(AppConstants.BASE_URL +
-                        AppConstants.UPLOAD_URL +
-                        popularProduct.img!)),
+                    image: NetworkImage( popularProduct.img!)),
               ),
             ),
           ),
@@ -295,7 +230,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     left: Dimensions.width15,
                     right: Dimensions.width15),
                 child: AppColumn(
-                    text: popularProduct.name!, rating: popularProduct.stars!),
+                    
+                    text: popularProduct.name!, rating: popularProduct.rating!),
               ),
             ),
           )

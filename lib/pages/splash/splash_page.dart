@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dofd_user_panel/controllers/categories_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dofd_user_panel/utils/colors.dart';
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> _loadResources() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
+    await Get.find<CategoriesController>().getCategoriesList();
   }
 
   @override
