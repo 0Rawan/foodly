@@ -1,3 +1,4 @@
+import 'package:dofd_user_panel/pages/category/category.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -130,8 +131,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(
-                            RouteHelper.getRecommendedFood(index, "home"));
+                        print(categories.categoriesList[index].subCategory.length );
+                        Navigator.of(context).push(MaterialPageRoute(builder:(context)=>CategoryPage(index: index, category:categories.categoriesList[index].subCategory )));
+
                       },
                         child:
                         ImageCard(text: categories.categoriesList[index].title,

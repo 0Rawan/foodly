@@ -1,3 +1,4 @@
+import 'package:dofd_user_panel/models/categories_model.dart';
 import 'package:dofd_user_panel/models/order_model.dart';
 import 'package:dofd_user_panel/pages/address/add_address_page.dart';
 import 'package:dofd_user_panel/pages/address/pick_address_map.dart';
@@ -14,6 +15,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 import '../pages/cart/cart_page.dart';
+import '../pages/category/category.dart';
 import '../pages/home/home_page.dart';
 
 class RouteHelper {
@@ -27,6 +29,7 @@ class RouteHelper {
   static const String pickAddressMap = "/pick-address";
   static const String payment = '/payment';
   static const String orderSuccess = '/order-successful';
+  static const String categoryPage = '/category';
 
   static String getInitial() => "$initial ";
 
@@ -42,6 +45,8 @@ class RouteHelper {
   static String getAddressPage() => "$addAddress";
 
   static String getPickAddressPage() => "$pickAddressMap";
+
+  static String getCategoryPage(int index, List<dynamic> category) => "$categoryPage";
 
   static String getPaymentPage(String id, int userID, String mailContent) =>
       '$payment?id=$id&userID=$userID&mailContent=$mailContent';
@@ -74,6 +79,16 @@ class RouteHelper {
         var pageId = Get.parameters["pageId"];
         var page = Get.parameters["page"];
         return PopularFoodDetail(pageId: int.parse(pageId!), page: page!);
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: categoryPage,
+      page: () {
+        List<dynamic> category = Get.parameters["category"] as List;
+        var index = Get.parameters["index"];
+        //return PopularFoodDetail(pageId: int.parse(index!), page: category!);
+        return CategoryPage(index: int.parse(index!), category: category);
       },
       //transition: Transition.fadeIn
     ),

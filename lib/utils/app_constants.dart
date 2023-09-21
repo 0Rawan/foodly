@@ -37,4 +37,5 @@ class AppConstants {
 
   /* images */
   static const String DEFAULT_IMAGE = 'https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg';
+  static const  GRID_COLUMN_VALUE = 4;
 }

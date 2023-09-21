@@ -1,4 +1,5 @@
-import 'package:dofd_user_panel/models/products_model.dart';
+
+import 'sub_categories_model.dart';
 
 class Category {
   int? _totalSize;
@@ -36,14 +37,14 @@ class CategoryModel {
   String? title;
   String? description;
   String? img;
-  ProductModel? product;
+  List<dynamic>? subCategory;
 
   CategoryModel(
       {this.id,
         this.title,
         this.description,
         this.img,
-        this.product,
+        this.subCategory,
       });
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
@@ -51,7 +52,7 @@ class CategoryModel {
     title = json['title'];
     description = json['description'];
     img = json['image'];
-    product = json['product'];
+    subCategory = json['sub_categories'];
   }
 
 
@@ -62,7 +63,7 @@ class CategoryModel {
       'title': this.title,
       'description': this.description,
       'image': this.img,
-      'product': this.product,
+      'sub_categories': this.subCategory,
     };
   }
 }
